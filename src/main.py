@@ -1,9 +1,16 @@
+import json
+from gspread import service_account
 import logging
 from api_utils import fetch_data_from_api
 from db_utils import create_tables, insert_data
 from logging_utils import setup_logging
 from email_utils import send_email
 from gsheets_utils import update_google_sheets
+
+with open('credentials.json', 'r') as file:
+    credentials = json.load(file)
+
+gc = service_account.ServiceAccountCredentials.from_json_keyfile_dict(credentials)
 
 def main():
     # Настройка логирования
