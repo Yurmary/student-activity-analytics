@@ -1,1 +1,15 @@
+name: My Workflow
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Use credentials
+      run: |
+        echo "${{ secrets.CREDENTIALS }}" > credentials.json
+        # Здесь можно запустить ваш скрипт, который использует credentials.json
+        python src/main.py
 
